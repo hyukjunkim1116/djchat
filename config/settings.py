@@ -8,7 +8,14 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = []
-INSTALLED_APPS = [
+THIRD_PARTY_APPS = [
+    "rest_framework",
+]
+CUSTOM_APPS = [
+    "account",
+    "server",
+]
+SYSTEM_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -16,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+INSTALLED_APPS = THIRD_PARTY_APPS + CUSTOM_APPS + SYSTEM_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -68,3 +76,4 @@ USE_I18N = True
 USE_TZ = True
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+AUTH_USER_MODEL = "account.Account"
